@@ -4,6 +4,6 @@
 # 1-  Instalar dependencias
     npm i
 
-# 2- Iniciar Servidor
+# 2- Iniciar Aplicación
     ng serve
 
