@@ -5,5 +5,5 @@
     npm i
 
 # 2- Iniciar Servidor
-    ejecutar ng serve
+    ng serve
 
