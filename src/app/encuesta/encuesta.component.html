@@ -1,0 +1,89 @@
+<section class="home">
+    <div class="row">
+        <div class="body">
+            <div class="contenedor-redondo">
+                <div class="contenedor-imagen-redondo">
+                    <div class="col-12 text-center">
+                        <img class="imagen-redonda" src="assets/images/ico-votacion.png">
+                    </div>
+                </div>
+                <div class="col-12 text-center mb-3">
+                    <div class="col-12 text-center titulo-principal-nv">
+                        Encuestas
+                    </div>
+                    <div class="col-12 mt-2 m-0 text-center negrita">
+                        Selecciona una opción
+                    </div>
+
+                    <button class="botonGrey col-10 boton-bc mt-2 mb-2" (click)="Modal(content)">
+                        Encuesta
+                    </button>
+                    <button class="botonGreen col-10 boton-bc mt-2" (click)="Modal(content2)">
+                        Resultados
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="contenedor-imagen-redondo">
+            <div class="col-12 text-center">
+                <img class="imagen-redonda" src="assets/images/ico-votacion.png" />
+            </div>
+        </div>
+        <div id="accordion">
+            <div class="card-co text-center" *ngFor="let item of PreguntaActiva">
+                <div class="color-verde col-12 mb-3 text-center pb-0">
+                    {{item.pregunta}}
+                </div>
+                <input [(ngModel)]="username" class="InputGrey col-10 mt-2" placeholder="Ingrese correo" type="text" />
+                <div *ngFor="let subitem of item['alternativas'];  let x = index;" class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <!-- <ion-checkbox  class="check-gc" color="primary"></ion-checkbox> -->
+                        <div class="text-center" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                            <input class="form-check-input" type="radio" (change)="changeGender($event,subitem.alternativa_id )" name="exampleRadios">
+                            <label>{{subitem.alternativa_nombre}}</label>
+                        </div>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-12 text-center mt-3 mb-3">
+                <button class="botonGrey m-2 col-5 boton-bc" (click)="modal.dismiss('Cross click')">
+                    Volver
+                </button>
+                <button class="botonGreen m-2 col-5 boton-bc" (click)="EnviarRespuesta(PreguntaActiva);modal.dismiss('Cross click')">
+                    Enviar
+                </button>
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template #content2 let-modal>
+        <div class="contenedor-imagen-redondo">
+            <div class="col-12 text-center">
+                <img class="imagen-redonda" src="assets/images/ico-votacion.png" />
+            </div>
+        </div>
+        <div id="accordion">
+            <div class="card-co text-center" *ngFor="let item of PreguntaActiva">
+                <div class="color-verde col-12 mb-3 text-center pb-0">
+                    {{item.pregunta}}
+                </div>
+                <div *ngFor="let subitem of ArrayRespuestas;  let x = index;" class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <div class="text-center" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                            <label>{{subitem.username}} - {{subitem.alternativa}}</label>
+                        </div>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-12 text-center mt-3 mb-3">
+                <button class="botonGrey m-2 col-5 boton-bc" (click)="modal.dismiss('Cross click')">
+                    Volver
+                </button>
+            </div>
+        </div>
+
+    </ng-template>
+</section>
